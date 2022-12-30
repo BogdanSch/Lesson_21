@@ -1,9 +1,25 @@
 <?php
 
 function print_array($request){
-    echo "<table class=\"table table-bordered\"><tr><td>Product name</td><td>Product price</td><td>Product sales</td></tr>";
+    //<td>Product name</td><td>Product price</td><td>Product sales</td>
+    echo "<table class=\"table table-bordered\"><tr>";
+    $i = 0;
     while ($res = $request->fetch_assoc()) {
-        echo "<tr><td>{$res['product_name']}</td><td>{$res['product_price']}</td><td>{$res['product_sales']}</td></tr>";
+        if($i == 0){
+            foreach ($res as $key => $value) {
+                if(!str_contains($key, "id"))
+                    echo "<td>{$key}</td>";
+            }
+            echo "</tr>";
+            $i++;
+        }
+        echo "<tr>";
+        foreach ($res as $key => $value) {
+            if(!str_contains($key, "id"))
+                echo "<td>{$value}</td>";
+        }
+        echo "</tr>";
+        // echo "<tr><td>{$res['product_name']}</td><td>{$res['product_price']}</td><td>{$res['product_sales']}</td></tr>";
     }
     echo "</table>";
 }
