@@ -10,9 +10,11 @@ $result = $conn->query($sql);
 print_array($result);
 echo "<hr>";
 //2
-$sql = "SELECT `student_name`,`student_last_name`,`student_subject` FROM students INNER JOIN students_subject ON students.id = students_subject.student_id;";
+$sql = "SELECT DISTINCT students.student_name, students.student_last_name, subjects.subject_name, subjects.subject_hours FROM students
+JOIN subjects JOIN students_subject ON students.id=students_subject.student_id;";
 $result = $conn->query($sql);
 print_array($result);
+
 
 $conn->close();
 include("../page-parts/footer.php");
