@@ -4,9 +4,9 @@ include("../page-parts/header.php");
 include("../page-parts/action.php");
 
 //1
-$stmt = $conn->prepare("SELECT * FROM products_sales WHERE product_sales=(SELECT MAX(?) FROM products_sales);");
+$stmt = $conn->prepare("SELECT * FROM products_sales WHERE product_sales=(SELECT  MAX(?) FROM products_sales);");
 $stmt->bind_param("s", $val);
-$val = "50";
+$val = "product_sales";
 $stmt->execute();
 $result = ($stmt->get_result());
 print_array($result);
